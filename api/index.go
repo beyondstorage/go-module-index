@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	. "go.beyondstorage.io/module-index"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -22,19 +24,19 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 	// Handle all service packages
 	if strings.HasPrefix(path, "services/") {
-		err = handle(w, path, "", "go-storage")
+		err = Handle(w, path, "", "go-storage")
 		return
 	}
 
 	// Handle all pkg packages
 	if strings.HasPrefix(path, "pkg/") {
-		err = handle(w, path, "", "go-storage")
+		err = Handle(w, path, "", "go-storage")
 		return
 	}
 
 	// TODO: we will need to handle repo like beyond-ctl and so on.
 
 	// go.beyondstorage.io => go-storage
-	err = handle(w, "", "", "go-storage")
+	err = Handle(w, "", "", "go-storage")
 	return
 }

@@ -1,4 +1,4 @@
-package api
+package index
 
 import (
 	"fmt"
@@ -25,7 +25,7 @@ Nothing to see here; <a href="https://pkg.go.dev/go.beyondstorage.io{{ .Name }}"
 </body>
 </html>`))
 
-func handle(w io.Writer, name, root, repo string) (err error) {
+func Handle(w io.Writer, name, root, repo string) (err error) {
 	m := module{
 		Name: name,
 		Root: root,

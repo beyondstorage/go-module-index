@@ -1,4 +1,4 @@
-package api
+package index
 
 import (
 	"bytes"
@@ -20,12 +20,12 @@ Nothing to see here; <a href="https://pkg.go.dev/go.beyondstorage.io/services/s3
 
 func TestHandle(t *testing.T) {
 	var w bytes.Buffer
-	err := handle(&w,
+	err := Handle(&w,
 		"services/s3",
 		"",
 		"go-storage")
 	if err != nil {
-		t.Errorf("handle content: %v", err)
+		t.Errorf("Handle content: %v", err)
 		return
 	}
 
