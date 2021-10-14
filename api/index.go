@@ -29,16 +29,20 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Handle all pkg packages
-	if strings.HasPrefix(path, "pkg/") {
+	// Handle credential
+	if path == "credential" {
 		err = handle(w, path, "", "go-storage")
 		return
 	}
+	switch path {
+	case "credential", "endpoint":
+		err = handle(w, path, "", "go-storage")
+	default:
+		// Fallback to root module.
+		err = handle(w, "", "", "go-storage")
+	}
 
 	// TODO: we will need to handle repo like beyond-ctl and so on.
-
-	// go.beyondstorage.io => go-storage
-	err = handle(w, "", "", "go-storage")
 	return
 }
 
