@@ -23,24 +23,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
-	// Handle all service packages
-	if strings.HasPrefix(path, "services/") {
-		err = handle(w, path, "", "go-storage")
-		return
-	}
-
-	// Handle credential
-	if path == "credential" {
-		err = handle(w, path, "", "go-storage")
-		return
-	}
-	switch path {
-	case "credential", "endpoint":
-		err = handle(w, path, "", "go-storage")
-	default:
-		// Fallback to root module.
-		err = handle(w, "", "", "go-storage")
-	}
+	// Handle go-storage and it's submodules
+	err = handle(w, path, "", "go-storage")
 
 	// TODO: we will need to handle repo like beyond-ctl and so on.
 	return
